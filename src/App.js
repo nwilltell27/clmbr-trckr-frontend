@@ -11,7 +11,7 @@ export default function App() {
       date: '', 
       facility: '',
       difficulty: 'V2',
-      completed: false
+      completed: 'NO'
     }
   });
 
@@ -46,7 +46,7 @@ export default function App() {
         date: '',
         facility: '',
         difficulty: 'V2',
-        completed: false
+        completed: 'NO'
       }
     });
   }
@@ -104,9 +104,9 @@ export default function App() {
               defaultChecked={climbState.newClimb.completed} 
               onChange={handleChange} 
             /> */}
-            <select name="completed" value={climbState.newClimb.completed}>
-              <option value={true}>Yes!</option>
-              <option value={false}>Not Yet!</option>
+            <select name="completed" value={climbState.newClimb.completed} onChange={handleChange}>
+              <option value="NO">Not Yet!</option>
+              <option value="YES">Yes!</option>
             </select>
           </label>
           <button>Log Climb</button>
@@ -131,7 +131,7 @@ export default function App() {
             </div>
             <div>
               <p>COMPLETED?</p>
-              <p>{c.completed ? 'Yes!' : 'Not yet!'}</p>
+              <p>{c.completed}</p>
             </div>
           </article>
         ))}

@@ -4,13 +4,9 @@ import './App.css';
 
 export default function App() {
   
+  // Setting initial State
   const [ climbState, setClimbState ] = useState({
-    climbs: [{
-      date: '2021-05-15',
-      facility: 'Hollywood Boulders', 
-      difficulty: 'V2',
-      completed: 'Yes'
-    }],
+    climbs: [],
     newClimb: {
       date: '', 
       facility: '',
@@ -18,6 +14,29 @@ export default function App() {
       completed: false
     }
   });
+
+  useEffect(() => {
+    async function getClimbData() {
+      const climbs = await fetch('http://localhost:3001/api/climbs')
+      .then(res => res.json());
+      setClimbState(prevState => ({
+          ...prevState,
+          climbs
+        }));
+    }
+    getClimbData();
+  }, []);
+  
+  /* function getClimbData() {
+    fetch('http://localhost:3001/api/climbs')
+    .then(res => res.json())
+    .then(data => 
+      setClimbState(prevState => ({
+        ...prevState,
+        climbs: data
+      })))
+    .catch(err => console.log(err))
+  } */
 
   function logClimb(e) {
     e.preventDefault();
@@ -53,15 +72,15 @@ export default function App() {
         <form className="form-align" onSubmit={logClimb}>
           <label>
             <span>Date: </span>
-            <input type="date" name="date" value={climbState.date} onChange={handleChange} />
+            <input type="date" name="date" value={climbState.newClimb.date} onChange={handleChange} />
           </label>
           <label>
             <span>Facility: </span>
-            <input name="facility" value={climbState.facility} onChange={handleChange} />
+            <input name="facility" value={climbState.newClimb.facility} onChange={handleChange} />
           </label>
           <label>
             <span>Difficulty: </span>
-            <select name="difficulty" value={climbState.difficulty} onChange={handleChange}>
+            <select name="difficulty" value={climbState.newClimb.difficulty} onChange={handleChange}>
               <option value="V0">V0</option>
               <option value="V1">V1</option>
               <option value="V2">V2</option>
@@ -79,7 +98,16 @@ export default function App() {
           </label>
           <label>
             <span>Completed: </span>
-            <input type="checkbox" name="completed" value={climbState.completed} onChange={handleChange} />
+            {/* <input 
+              type="checkbox" 
+              name="completed" 
+              defaultChecked={climbState.newClimb.completed} 
+              onChange={handleChange} 
+            /> */}
+            <select name="completed" value={climbState.newClimb.completed}>
+              <option value={true}>Yes!</option>
+              <option value={false}>Not Yet!</option>
+            </select>
           </label>
           <button>Log Climb</button>
         </form>

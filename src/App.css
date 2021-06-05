@@ -25,6 +25,7 @@
 
 .form-align > button {
   width: 100px;
+  margin: .5rem;
 }
 
 article {

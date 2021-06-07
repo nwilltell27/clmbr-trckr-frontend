@@ -11,7 +11,7 @@ export default function App() {
       date: '', 
       facility: '',
       difficulty: 'V2',
-      completed: 'NO'
+      completed: 'No'
     }
   });
 
@@ -38,17 +38,29 @@ export default function App() {
     .catch(err => console.log(err))
   } */
 
-  function logClimb(e) {
+  async function handleSubmit(e) {
     e.preventDefault();
+    try {
+    const climb = await fetch('http://localhost:3001/api/climbs', {
+      method: 'POST', 
+      headers: {
+        'Content-type': 'Application/json'
+      },
+      body: JSON.stringify(climbState.newClimb)
+    })
+    .then(res => res.json());
     setClimbState({
-      climbs: [...climbState.climbs, climbState.newClimb],
+      climbs: [...climbState.climbs, climb],
       newClimb: {
         date: '',
         facility: '',
         difficulty: 'V2',
-        completed: 'NO'
+        completed: 'No'
       }
     });
+  } catch (error) {
+    console.log(error);
+  }
   }
 
   function handleChange(e) {
@@ -69,7 +81,7 @@ export default function App() {
       
       <section className="add-climb">
         <h2>Log a Climb!</h2>
-        <form className="form-align" onSubmit={logClimb}>
+        <form className="form-align" onSubmit={handleSubmit}>
           <label>
             <span>Date: </span>
             <input type="date" name="date" value={climbState.newClimb.date} onChange={handleChange} />
@@ -105,8 +117,8 @@ export default function App() {
               onChange={handleChange} 
             /> */}
             <select name="completed" value={climbState.newClimb.completed} onChange={handleChange}>
-              <option value="NO">Not Yet!</option>
-              <option value="YES">Yes!</option>
+              <option value="No">No</option>
+              <option value="Yes">Yes</option>
             </select>
           </label>
           <button>Log Climb</button>
@@ -130,7 +142,7 @@ export default function App() {
               <p>{c.difficulty}</p>
             </div>
             <div>
-              <p>COMPLETED?</p>
+              <p>COMPLETED</p>
               <p>{c.completed}</p>
             </div>
           </article>

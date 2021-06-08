@@ -52,6 +52,14 @@ article > div > p {
   font-weight: bold;
 }
 
+.level-and-color {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #000;
+  font-weight: bold;
+}
+
 .update-btn {
   cursor: pointer;
   background-color: #2dc62d;
@@ -71,3 +79,4 @@ article > div > p {
   color: #fff;
   font-size: .75rem;
 }
+

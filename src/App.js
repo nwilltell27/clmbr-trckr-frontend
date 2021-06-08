@@ -13,6 +13,7 @@ export default function App() {
       date: '', 
       facility: '',
       difficulty: 'V2',
+      color: 'Red',
       completed: 'No'
     }, 
     editMode: false
@@ -49,6 +50,7 @@ export default function App() {
             date: '',
             facility: '',
             difficulty: 'V2',
+            color: 'Red',
             completed: 'No'
           },
           editMode: false
@@ -72,6 +74,7 @@ export default function App() {
             date: '',
             facility: '',
             difficulty: 'V2',
+            color: 'Red',
             completed: 'No'
           }
         });
@@ -148,6 +151,19 @@ export default function App() {
             </select>
           </label>
           <label>
+            <span>Color: </span>
+            <select name="color" value={climbState.newClimb.color} onChange={handleChange}>
+              <option value="Red">Red</option>
+              <option value="Orange">Orange</option>
+              <option value="Yellow">Yellow</option>
+              <option value="Green">Green</option>
+              <option value="Blue">Blue</option>
+              <option value="Purple">Purple</option>
+              <option value="Black">Black</option>
+              <option value="White">White</option>
+            </select>
+          </label>
+          <label>
             <span>Completed: </span>
             {/* <input 
               type="checkbox" 
@@ -160,12 +176,12 @@ export default function App() {
               <option value="Yes">Yes</option>
             </select>
           </label>
-          <button>{climbState.editMode ? 'Edit Climb' : 'Log Climb'}</button>
+          <button>{climbState.editMode ? 'Update' : 'Log Climb'}</button>
         </form>
       </section>
 
       <section>
-        <h2>Here are all your Climbs!</h2>
+        <h2>View your Climb Log below:</h2>
         {climbState.climbs.map(c => (
           <article key={c._id}>
             <div>
@@ -176,9 +192,9 @@ export default function App() {
               <span>FACILITY</span>
               <p>{c.facility}</p>
             </div>
-            <div>
-              <span>DIFFICULTY</span>
-              <p>{c.difficulty}</p>
+            <div className="level-and-color">
+              <span>{c.color} : {c.difficulty}</span>
+              {/* <p></p> */}
             </div>
             <div>
               <span>COMPLETED</span>

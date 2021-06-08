@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react';
-
 import './App.css';
+
+// Import Components
+import Header from './components/Header/Header';
 
 export default function App() {
   
@@ -12,7 +14,8 @@ export default function App() {
       facility: '',
       difficulty: 'V2',
       completed: 'No'
-    }
+    }, 
+    editMode: false
   });
 
   useEffect(() => {
@@ -26,41 +29,56 @@ export default function App() {
     }
     getClimbData();
   }, []);
-  
-  /* function getClimbData() {
-    fetch('http://localhost:3001/api/climbs')
-    .then(res => res.json())
-    .then(data => 
-      setClimbState(prevState => ({
-        ...prevState,
-        climbs: data
-      })))
-    .catch(err => console.log(err))
-  } */
 
   async function handleSubmit(e) {
     e.preventDefault();
-    try {
-    const climb = await fetch('http://localhost:3001/api/climbs', {
-      method: 'POST', 
-      headers: {
-        'Content-type': 'Application/json'
-      },
-      body: JSON.stringify(climbState.newClimb)
-    })
-    .then(res => res.json());
-    setClimbState({
-      climbs: [...climbState.climbs, climb],
-      newClimb: {
-        date: '',
-        facility: '',
-        difficulty: 'V2',
-        completed: 'No'
+    if(climbState.editMode) {
+      const {_id, date, facility, difficulty, completed } = climbState.newClimb;
+      try {
+        const climbs = await fetch(`http://localhost:3001/api/climbs/${_id}`, {
+          method: 'PUT', 
+          headers: {
+            'Content-type': 'Application/json'
+          },
+          body: JSON.stringify(climbState.newClimb)
+        })
+        .then(res => res.json());
+        setClimbState({
+          climbs,
+          newClimb: {
+            date: '',
+            facility: '',
+            difficulty: 'V2',
+            completed: 'No'
+          },
+          editMode: false
+        });
+      } catch (error) {
+        console.log(error);
       }
-    });
-  } catch (error) {
-    console.log(error);
-  }
+    } else {
+      try {
+        const climb = await fetch('http://localhost:3001/api/climbs', {
+          method: 'POST', 
+          headers: {
+            'Content-type': 'Application/json'
+          },
+          body: JSON.stringify(climbState.newClimb)
+        })
+        .then(res => res.json());
+        setClimbState({
+          climbs: [...climbState.climbs, climb],
+          newClimb: {
+            date: '',
+            facility: '',
+            difficulty: 'V2',
+            completed: 'No'
+          }
+        });
+      } catch (error) {
+        console.log(error);
+      }
+    }
   }
 
   function handleChange(e) {
@@ -73,12 +91,19 @@ export default function App() {
     }));
   }
 
+  function handleEdit(id) {
+    const climbToEdit = climbState.climbs.find(climb => climb._id === id);
+    setClimbState(prevState => ({
+      ...prevState,
+      newClimb: climbToEdit,
+      editMode: true
+    }));
+  }
+
   return (
     <div className="App">
-      <header className="App-header">
-        <h1>{'🧗'} CLMBR TRCKR</h1>
-      </header>
-      
+      <Header />
+
       <section className="add-climb">
         <h2>Log a Climb!</h2>
         <form className="form-align" onSubmit={handleSubmit}>
@@ -121,29 +146,36 @@ export default function App() {
               <option value="Yes">Yes</option>
             </select>
           </label>
-          <button>Log Climb</button>
+          <button>{climbState.editMode ? 'Edit Climb' : 'Log Climb'}</button>
         </form>
       </section>
 
       <section>
         <h2>Here are all your Climbs!</h2>
-        {climbState.climbs.map((c, i) => (
-          <article key={i}>
+        {climbState.climbs.map(c => (
+          <article key={c._id}>
             <div>
-              <p>DATE</p>
+              <span>DATE</span>
               <p>{c.date}</p>
             </div>
             <div>
-              <p>FACILITY</p>
+              <span>FACILITY</span>
               <p>{c.facility}</p>
             </div>
             <div>
-              <p>DIFFICULTY</p>
+              <span>DIFFICULTY</span>
               <p>{c.difficulty}</p>
             </div>
             <div>
-              <p>COMPLETED</p>
+              <span>COMPLETED</span>
               <p>{c.completed}</p>
+            </div>
+            <div>
+              <p
+                className="update-btn"
+                onClick={() => handleEdit(c._id)}>
+              Update
+              </p>
             </div>
           </article>
         ))}

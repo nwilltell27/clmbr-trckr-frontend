@@ -125,15 +125,16 @@ export default function App() {
         <h2>Log a Climb!</h2>
         <form className="form-align" onSubmit={handleSubmit}>
           <label>
-            <span>Date: </span>
+            Date: 
+          </label>
             <input type="date" name="date" value={climbState.newClimb.date} onChange={handleChange} />
-          </label>
           <label>
-            <span>Facility: </span>
+            Facility: 
+          </label>
             <input name="facility" value={climbState.newClimb.facility} onChange={handleChange} />
-          </label>
           <label>
-            <span>Difficulty: </span>
+            Difficulty: 
+          </label>
             <select name="difficulty" value={climbState.newClimb.difficulty} onChange={handleChange}>
               <option value="V0">V0</option>
               <option value="V1">V1</option>
@@ -149,9 +150,9 @@ export default function App() {
               <option value="V11">V11</option>
               <option value="V12">V12</option>
             </select>
-          </label>
           <label>
-            <span>Color: </span>
+            Route Color: 
+          </label>
             <select name="color" value={climbState.newClimb.color} onChange={handleChange}>
               <option value="Red">Red</option>
               <option value="Orange">Orange</option>
@@ -162,9 +163,9 @@ export default function App() {
               <option value="Black">Black</option>
               <option value="White">White</option>
             </select>
-          </label>
           <label>
-            <span>Completed: </span>
+            Completed: 
+          </label>
             {/* <input 
               type="checkbox" 
               name="completed" 
@@ -175,7 +176,6 @@ export default function App() {
               <option value="No">No</option>
               <option value="Yes">Yes</option>
             </select>
-          </label>
           <button>{climbState.editMode ? 'Update Climb' : 'Log Climb'}</button>
         </form>
       </section>

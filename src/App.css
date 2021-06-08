@@ -38,7 +38,7 @@ article {
 }
 
 article div {
-  padding-top: 5px;
+  padding: 10px 5px 10px 5px;
   width: 200px;
   min-width: auto;
   height: 100px;
@@ -46,11 +46,6 @@ article div {
   background-color: rgb(62, 71, 177);
   color: #fff;
   border-radius: 10px;
-}
-
-article > div > span {
-  padding-top: 1rem;
-  text-decoration: underline;
 }
 
 article > div > p {
@@ -64,5 +59,15 @@ article > div > p {
   padding: 2px;
   border: 1px solid #000;
   color: #000;
+  font-size: .75rem;
+}
+
+.delete-btn {
+  cursor: pointer;
+  background-color: #b33838;
+  margin: 10px;
+  padding: 2px;
+  border: 1px solid #000;
+  color: #fff;
   font-size: .75rem;
 }

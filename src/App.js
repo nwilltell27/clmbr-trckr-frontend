@@ -100,6 +100,20 @@ export default function App() {
     }));
   }
 
+  async function handleDelete(id) {
+    try {
+      const climbs = await fetch(`http://localhost:3001/api/climbs/${id}`, {
+        method: 'DELETE'
+      }).then(res => res.json());
+      setClimbState(prevState => ({
+        ...prevState,
+        climbs,
+      }));
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
   return (
     <div className="App">
       <Header />
@@ -175,6 +189,11 @@ export default function App() {
                 className="update-btn"
                 onClick={() => handleEdit(c._id)}>
               Update
+              </p>
+              <p
+                className="delete-btn"
+                onClick={() => handleDelete(c._id)}>
+              Delete
               </p>
             </div>
           </article>

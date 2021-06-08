@@ -176,7 +176,7 @@ export default function App() {
               <option value="Yes">Yes</option>
             </select>
           </label>
-          <button>{climbState.editMode ? 'Update' : 'Log Climb'}</button>
+          <button>{climbState.editMode ? 'Update Climb' : 'Log Climb'}</button>
         </form>
       </section>
 
@@ -201,16 +201,23 @@ export default function App() {
               <p>{c.completed}</p>
             </div>
             <div>
-              <p
+              <button
                 className="update-btn"
                 onClick={() => handleEdit(c._id)}>
               Update
-              </p>
-              <p
+              </button>
+              <button
                 className="delete-btn"
-                onClick={() => handleDelete(c._id)}>
+                onClick={() => {
+                  const confirmBox = window.confirm(
+                    'Are you sure you want to delete?'
+                  ) 
+                  if (confirmBox === true) {
+                    handleDelete(c._id);
+                  }
+                }}>
               Delete
-              </p>
+              </button>
             </div>
           </article>
         ))}

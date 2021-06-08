@@ -60,10 +60,15 @@ article > div > p {
   font-weight: bold;
 }
 
+article > div > button {
+  font-weight: bold;
+  width: 150px;
+}
+
 .update-btn {
   cursor: pointer;
   background-color: #2dc62d;
-  margin: 10px;
+  margin-top: 10px;
   padding: 2px;
   border: 1px solid #000;
   color: #000;
@@ -73,7 +78,7 @@ article > div > p {
 .delete-btn {
   cursor: pointer;
   background-color: #b33838;
-  margin: 10px;
+  margin-top: 10px;
   padding: 2px;
   border: 1px solid #000;
   color: #fff;

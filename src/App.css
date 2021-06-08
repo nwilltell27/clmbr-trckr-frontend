@@ -70,7 +70,9 @@ article > div > button {
   background-color: #2dc62d;
   margin-top: 10px;
   padding: 2px;
-  border: 1px solid #000;
+  /* border: 2px solid #000; */
+  border-style: none;
+  border-radius: 7.5px;
   color: #000;
   font-size: .75rem;
 }
@@ -80,7 +82,9 @@ article > div > button {
   background-color: #b33838;
   margin-top: 10px;
   padding: 2px;
-  border: 1px solid #000;
+  /* border: 2px solid #000; */
+  border-style: none;
+  border-radius: 7.5px;
   color: #fff;
   font-size: .75rem;
 }

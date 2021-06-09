@@ -1,4 +1,9 @@
 import { useState, useEffect } from 'react';
+import { 
+  fetchClimbs, 
+  updateClimb,
+  createClimb,
+  deleteClimb } from './services/climb-service';
 import './App.css';
 
 // Import Components
@@ -21,8 +26,7 @@ export default function App() {
 
   useEffect(() => {
     async function getClimbData() {
-      const climbs = await fetch('http://localhost:3001/api/climbs')
-      .then(res => res.json());
+      const climbs = await fetchClimbs();
       setClimbState(prevState => ({
           ...prevState,
           climbs
@@ -34,16 +38,8 @@ export default function App() {
   async function handleSubmit(e) {
     e.preventDefault();
     if(climbState.editMode) {
-      const {_id, date, facility, difficulty, completed } = climbState.newClimb;
       try {
-        const climbs = await fetch(`http://localhost:3001/api/climbs/${_id}`, {
-          method: 'PUT', 
-          headers: {
-            'Content-type': 'Application/json'
-          },
-          body: JSON.stringify(climbState.newClimb)
-        })
-        .then(res => res.json());
+        const climbs = await updateClimb(climbState.newClimb);
         setClimbState({
           climbs,
           newClimb: {
@@ -60,14 +56,7 @@ export default function App() {
       }
     } else {
       try {
-        const climb = await fetch('http://localhost:3001/api/climbs', {
-          method: 'POST', 
-          headers: {
-            'Content-type': 'Application/json'
-          },
-          body: JSON.stringify(climbState.newClimb)
-        })
-        .then(res => res.json());
+        const climb = await createClimb(climbState.newClimb);
         setClimbState({
           climbs: [...climbState.climbs, climb],
           newClimb: {
@@ -105,9 +94,7 @@ export default function App() {
 
   async function handleDelete(id) {
     try {
-      const climbs = await fetch(`http://localhost:3001/api/climbs/${id}`, {
-        method: 'DELETE'
-      }).then(res => res.json());
+      const climbs = await deleteClimb(id);
       setClimbState(prevState => ({
         ...prevState,
         climbs,
@@ -179,7 +166,7 @@ export default function App() {
           <button>{climbState.editMode ? 'Update Climb' : 'Log Climb'}</button>
         </form>
       </section>
-
+      <br />
       <section>
         <h2>View your Climb Log below:</h2>
         {climbState.climbs.map(c => (

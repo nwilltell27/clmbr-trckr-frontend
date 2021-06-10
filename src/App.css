@@ -36,7 +36,7 @@ article > div > p {
   font-weight: bold;
 }
 
-.level-and-color {
+.diff-and-color {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -50,26 +50,22 @@ article > div > button {
 }
 
 .update-btn {
-  cursor: pointer;
   background-color: #2dc62d;
-  margin-top: 10px;
-  padding: 2px;
-  /* border: 2px solid #000; */
-  border-style: none;
-  border-radius: 7.5px;
   color: #000;
-  font-size: .75rem;
 }
 
 .delete-btn {
-  cursor: pointer;
   background-color: #b33838;
+  color: #fff;
+}
+
+.btn {
+  cursor: pointer;
+  box-shadow: 1px 1px 1px 1px #3a3838;
   margin-top: 10px;
   padding: 2px;
-  /* border: 2px solid #000; */
   border-style: none;
   border-radius: 7.5px;
-  color: #fff;
   font-size: .75rem;
 }
 

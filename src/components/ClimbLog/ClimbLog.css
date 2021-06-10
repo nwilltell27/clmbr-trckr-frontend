@@ -56,3 +56,11 @@ article {
     border-radius: 7.5px;
     font-size: .75rem;
   }
+  
+  .btn:hover {
+    box-shadow: 1px 1px 5px 1px #202020;
+  }
+
+  .btn:active {
+    box-shadow: none;
+  }

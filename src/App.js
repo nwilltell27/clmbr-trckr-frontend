@@ -128,6 +128,8 @@ export default function App() {
         handleDelete={handleDelete}
       />
 
+      <br />
+
       <Footer />
 
     </div>

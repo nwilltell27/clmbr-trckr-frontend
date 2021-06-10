@@ -7,6 +7,7 @@ import {
 import './App.css';
 
 import Header from './components/Header/Header';
+import Footer from './components/Footer/Footer';
 import AddClimb from './components/AddClimb/AddClimb';
 import ClimbLog from './components/ClimbLog/ClimbLog';
 
@@ -126,6 +127,8 @@ export default function App() {
         handleEdit={handleEdit}
         handleDelete={handleDelete}
       />
+
+      <Footer />
 
     </div>
   );

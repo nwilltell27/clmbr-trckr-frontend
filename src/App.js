@@ -6,13 +6,12 @@ import {
   deleteClimb } from './services/climb-service';
 import './App.css';
 
-// Import Components
 import Header from './components/Header/Header';
 import AddClimb from './components/AddClimb/AddClimb';
+import ClimbLog from './components/ClimbLog/ClimbLog';
 
 export default function App() {
   
-  // Setting initial State
   const [ climbState, setClimbState ] = useState({
     climbs: [],
     newClimb: {
@@ -122,48 +121,11 @@ export default function App() {
 
       <br />
 
-      <section>
-        <h2>View your Climb Log below:</h2>
-        {climbState.climbs.map(c => (
-          <article key={c._id}>
-            <div>
-              <span>DATE</span>
-              <p>{c.date}</p>
-            </div>
-            <div>
-              <span>FACILITY</span>
-              <p>{c.facility}</p>
-            </div>
-            <div className="level-and-color">
-              <span>{c.color} : {c.difficulty}</span>
-              {/* <p></p> */}
-            </div>
-            <div>
-              <span>COMPLETED</span>
-              <p>{c.completed}</p>
-            </div>
-            <div>
-              <button
-                className="update-btn"
-                onClick={() => handleEdit(c._id)}>
-              Update
-              </button>
-              <button
-                className="delete-btn"
-                onClick={() => {
-                  const confirmBox = window.confirm(
-                    'Are you sure you want to delete?'
-                  ) 
-                  if (confirmBox === true) {
-                    handleDelete(c._id);
-                  }
-                }}>
-              Delete
-              </button>
-            </div>
-          </article>
-        ))}
-      </section>
+      <ClimbLog 
+        climbs={climbState.climbs}
+        handleEdit={handleEdit}
+        handleDelete={handleDelete}
+      />
 
     </div>
   );

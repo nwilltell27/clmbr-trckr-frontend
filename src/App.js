@@ -8,6 +8,7 @@ import './App.css';
 
 // Import Components
 import Header from './components/Header/Header';
+import AddClimb from './components/AddClimb/AddClimb';
 
 export default function App() {
   
@@ -108,65 +109,19 @@ export default function App() {
     <div className="App">
       <Header />
 
-      <section className="add-climb">
-        <h2>Log a Climb!</h2>
-        <form className="form-align" onSubmit={handleSubmit}>
-          <label>
-            Date: 
-          </label>
-            <input type="date" name="date" value={climbState.newClimb.date} onChange={handleChange} />
-          <label>
-            Facility: 
-          </label>
-            <input name="facility" value={climbState.newClimb.facility} onChange={handleChange} />
-          <label>
-            Difficulty: 
-          </label>
-            <select name="difficulty" value={climbState.newClimb.difficulty} onChange={handleChange}>
-              <option value="V0">V0</option>
-              <option value="V1">V1</option>
-              <option value="V2">V2</option>
-              <option value="V3">V3</option>
-              <option value="V4">V4</option>
-              <option value="V5">V5</option>
-              <option value="V6">V6</option>
-              <option value="V7">V7</option>
-              <option value="V8">V8</option>
-              <option value="V9">V9</option>
-              <option value="V10">V10</option>
-              <option value="V11">V11</option>
-              <option value="V12">V12</option>
-            </select>
-          <label>
-            Route Color: 
-          </label>
-            <select name="color" value={climbState.newClimb.color} onChange={handleChange}>
-              <option value="Red">Red</option>
-              <option value="Orange">Orange</option>
-              <option value="Yellow">Yellow</option>
-              <option value="Green">Green</option>
-              <option value="Blue">Blue</option>
-              <option value="Purple">Purple</option>
-              <option value="Black">Black</option>
-              <option value="White">White</option>
-            </select>
-          <label>
-            Completed: 
-          </label>
-            {/* <input 
-              type="checkbox" 
-              name="completed" 
-              defaultChecked={climbState.newClimb.completed} 
-              onChange={handleChange} 
-            /> */}
-            <select name="completed" value={climbState.newClimb.completed} onChange={handleChange}>
-              <option value="No">No</option>
-              <option value="Yes">Yes</option>
-            </select>
-          <button>{climbState.editMode ? 'Update Climb' : 'Log Climb'}</button>
-        </form>
-      </section>
+      <AddClimb 
+        date={climbState.newClimb.date}
+        facility={climbState.newClimb.facility}
+        difficulty={climbState.newClimb.difficulty}
+        color={climbState.newClimb.color}
+        completed={climbState.newClimb.completed}
+        editMode={climbState.editMode}
+        handleChange={handleChange}
+        handleSubmit={handleSubmit}
+      />
+
       <br />
+
       <section>
         <h2>View your Climb Log below:</h2>
         {climbState.climbs.map(c => (

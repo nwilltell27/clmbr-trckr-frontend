@@ -17,8 +17,7 @@ function ClimbLog(props) {
                             <p>{c.facility}</p>
                         </div>
                         <div className="diff-and-color">
-                            <span>{c.color}
-                                : {c.difficulty}</span>
+                            <span>{c.color} : {c.difficulty}</span>
                         </div>
                         <div>
                             <span>COMPLETED</span>

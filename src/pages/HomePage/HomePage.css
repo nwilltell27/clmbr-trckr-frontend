@@ -1,0 +1,30 @@
+.HomePage {
+    display: flex;
+    margin: 1rem;
+    padding: 1rem;
+}
+
+.link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 8rem;
+    height: 8rem;
+    margin: 1rem;
+    padding: 20px;
+    border-radius: 50%;
+    background-color: #3e47b1;
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+    box-shadow: 1px 1px 2px 1px #3a3838;
+}
+
+.link:hover {
+    box-shadow: 1px 1px 5px 1px #202020;
+    color: #e896ca;
+}
+
+.link:active {
+    box-shadow: none;
+}

@@ -66,7 +66,11 @@ function AddClimb(props) {
                 </select>
                 <button>{props.editMode
                         ? 'Update Climb'
-                        : 'Log Climb'}</button>
+                        : 'Log Climb'}
+                </button>
+                <button value={props.newClimb}>
+                    Cancel
+                </button>
             </form>
         </section>
     );

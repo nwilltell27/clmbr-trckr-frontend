@@ -11,6 +11,11 @@ import Footer from './components/Footer/Footer';
 import AddClimb from './components/AddClimb/AddClimb';
 import ClimbLog from './components/ClimbLog/ClimbLog';
 
+import { Route, Switch } from 'react-router-dom';
+import HomePage from './pages/HomePage/HomePage';
+import ClimbLogger from './pages/ClimbLogger/ClimbLogger';
+import MasterLog from './pages/MasterLog/MasterLog';
+
 export default function App() {
   
   const [ climbState, setClimbState ] = useState({
@@ -109,29 +114,53 @@ export default function App() {
     <div className="App">
       <Header />
 
-      <AddClimb 
-        date={climbState.newClimb.date}
-        facility={climbState.newClimb.facility}
-        difficulty={climbState.newClimb.difficulty}
-        color={climbState.newClimb.color}
-        completed={climbState.newClimb.completed}
-        editMode={climbState.editMode}
-        handleChange={handleChange}
-        handleSubmit={handleSubmit}
-      />
+      <main>
+
+        <Switch>
+          <Route
+            exact path='/'
+            render={() => (
+              <HomePage
+
+              />
+            )}
+          />
+
+          <Route 
+            path='/add-climbs'
+            render={() => (
+              <ClimbLogger
+                // AddClimb
+                date={climbState.newClimb.date}
+                facility={climbState.newClimb.facility}
+                difficulty={climbState.newClimb.difficulty}
+                color={climbState.newClimb.color}
+                completed={climbState.newClimb.completed}
+                editMode={climbState.editMode}
+                newClimb={climbState.newClimb}
+                handleChange={handleChange}
+                handleSubmit={handleSubmit}
+              />
+            )}
+          />
+
+          <Route 
+            path='/climb-log'
+            render={() => (
+              <MasterLog 
+                // ClimbLog
+                climbs={climbState.climbs}
+                handleEdit={handleEdit}
+                handleDelete={handleDelete}
+              />
+            )}
+          />
+        </Switch>
+
+      </main>
 
       <br />
-
-      <ClimbLog 
-        climbs={climbState.climbs}
-        handleEdit={handleEdit}
-        handleDelete={handleDelete}
-      />
-
-      <br />
-
       <Footer />
-
     </div>
   );
 }

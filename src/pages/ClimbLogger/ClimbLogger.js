@@ -17,13 +17,23 @@ const ClimbLogger = (props) => {
                 handleChange={props.handleChange}
                 handleSubmit={props.handleSubmit}
             />
-            <button>
-                <Link
-                    className='view-log'
-                    to='climb-log'>
-                        View Climb Log
-                </Link>
-            </button>
+            <br />
+            <div>
+                <button>
+                    <Link
+                        className='add-climb-nav-links'
+                        to='/climb-log'>
+                            View Climb Log
+                    </Link>
+                </button>
+                <button className='link-align'>
+                    <Link
+                        className='add-climb-nav-links'
+                        to='/'>
+                            Home
+                    </Link>
+                </button>
+            </div>
         </div>
     );
 }

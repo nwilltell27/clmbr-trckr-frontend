@@ -8,8 +8,8 @@ import './App.css';
 
 import Header from './components/Header/Header';
 import Footer from './components/Footer/Footer';
-import AddClimb from './components/AddClimb/AddClimb';
-import ClimbLog from './components/ClimbLog/ClimbLog';
+// import AddClimb from './components/AddClimb/AddClimb';
+// import ClimbLog from './components/ClimbLog/ClimbLog';
 
 import { Route, Switch } from 'react-router-dom';
 import HomePage from './pages/HomePage/HomePage';

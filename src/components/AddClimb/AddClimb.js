@@ -4,7 +4,9 @@ function AddClimb(props) {
     return (
         <>
             <section className="add-climb">
-                <h2>Add Climb</h2>
+                <h2>{props.editMode
+                            ? 'Update Climb'
+                            : 'Add Climb'}</h2>
                 <form className="form-align" onSubmit={props.handleSubmit}>
                     <label>
                         Date:
@@ -66,8 +68,8 @@ function AddClimb(props) {
                         <option value="Yes">Yes</option>
                     </select>
                     <button>{props.editMode
-                            ? 'Update Climb'
-                            : 'Log Climb'}
+                            ? 'Update'
+                            : 'Submit'}
                     </button>
                     <button value={props.newClimb}>
                         Cancel

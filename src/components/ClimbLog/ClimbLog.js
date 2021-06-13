@@ -1,9 +1,10 @@
 import './ClimbLog.css';
+import { Link } from 'react-router-dom';
 
 function ClimbLog(props) {
     return (
         <section>
-            <h2>View your Climb Log below:</h2>
+            <h2>Climb Log</h2>
             {props.climbs.map(c => (
                 <article key={c._id}>
                     <div>
@@ -23,7 +24,11 @@ function ClimbLog(props) {
                     </div>
                     <div>
                         <button className="update-btn btn" onClick={() => props.handleEdit(c._id)}>
-                            Update
+                            <Link
+                                className="to-update"
+                                to="add-climbs">  
+                                    Update
+                            </Link>
                         </button>
                         <button
                             className="delete-btn btn"

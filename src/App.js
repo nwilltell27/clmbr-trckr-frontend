@@ -18,6 +18,7 @@ import MasterLog from './pages/MasterLog/MasterLog';
 
 export default function App() {
   
+  // Climb State & Functions
   const [ climbState, setClimbState ] = useState({
     climbs: [],
     newClimb: {
@@ -109,6 +110,16 @@ export default function App() {
       console.log(error);
     }
   }
+
+  // Facility State & Functions
+  const [ facilityState, setFacilityState ] = useState({
+    facilities: [],
+    newFacility: {
+      name: '',
+      climbs: []
+    },
+    editMode: false
+  });
 
   return (
     <div className="App">

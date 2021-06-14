@@ -25,6 +25,7 @@ import HomePage from './pages/HomePage/HomePage';
 import ClimbLogger from './pages/ClimbLogger/ClimbLogger';
 import MasterLog from './pages/MasterLog/MasterLog';
 import FacilityForm from './pages/FacilityForm/FacilityForm';
+import MasterFacilityList from './pages/MasterFacilityList/MasterFacilityList';
 
 export default function App() {
   
@@ -227,7 +228,7 @@ export default function App() {
           </form>
         </section> */}
         
-        <section>
+        {/* <section>
           <h2>Facilities</h2>
           {facilityState.facilities.map(f => (
             <article key={f._id}>
@@ -237,7 +238,7 @@ export default function App() {
               <button onClick={() => handleFacilityDelete(f._id)}>Delete</button>
             </article>
           ))}
-        </section>
+        </section> */}
 
         <Switch>
           <Route
@@ -290,6 +291,18 @@ export default function App() {
                 newFacility={facilityState.newFacility}
                 handleFacilityChange={handleFacilityChange}
                 handleFacilitySubmit={handleFacilitySubmit}
+              />
+            )}
+          />
+
+          <Route 
+            path='facility-list'
+            render={() => (
+              <MasterFacilityList 
+                // FacilityList
+                facilities={facilityState.facilities}
+                handleFacilityEdit={handleFacilityEdit}
+                handleFacilityDelete={handleFacilityDelete}
               />
             )}
           />

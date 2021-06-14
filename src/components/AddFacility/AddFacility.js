@@ -3,9 +3,11 @@ import './AddFacility.css';
 function AddFacility(props) {
     return ( 
         <> 
-            <section>
+            <section className="add-facility">
                 <h2>Add Facility</h2>
-                <form onSubmit={props.handleFacilitySubmit}>
+                <form 
+                    className="form-align"
+                    onSubmit={props.handleFacilitySubmit}>
                 <label>
                     Name:
                 </label>

@@ -1,25 +1,34 @@
 import './App.css';
 import { useState, useEffect } from 'react';
+
+/* --- SERVICE MODULES --- */
 import { 
   fetchClimbs, 
   updateClimb,
   createClimb,
   deleteClimb } from './services/climb-service';
+import {
+  fetchFacilities,
+  updateFacility,
+  createFacility,
+  deleteFacility } from './services/facility-service';
 
+/* --- COMPONENTS --- */
 import Header from './components/Header/Header';
 import Footer from './components/Footer/Footer';
 // import AddClimb from './components/AddClimb/AddClimb';
 // import ClimbLog from './components/ClimbLog/ClimbLog';
 
+/* --- CLIETN-SIDE ROUTING --- */
 import { Route, Switch } from 'react-router-dom';
 import HomePage from './pages/HomePage/HomePage';
 import ClimbLogger from './pages/ClimbLogger/ClimbLogger';
 import MasterLog from './pages/MasterLog/MasterLog';
-// import FacilityForm from './pages/FacilityForm/FacilityForm';
+import FacilityForm from './pages/FacilityForm/FacilityForm';
 
 export default function App() {
   
-  // Climb State & Functions
+  /* --- Climb State & Functions --- */
   const [ climbState, setClimbState ] = useState({
     climbs: [],
     newClimb: {
@@ -112,7 +121,7 @@ export default function App() {
     }
   }
 
-  // Facility State & Functions
+  /* --- Facility State & Functions --- */
   const [ facilityState, setFacilityState ] = useState({
     facilities: [],
     newFacility: {
@@ -124,8 +133,7 @@ export default function App() {
 
   useEffect(() => {
     async function getFacilityData() {
-      const facilities = await fetch('http://localhost:3001/api/facilities')
-      .then(res => res.json());
+      const facilities = await fetchFacilities();
       setFacilityState(prevState => ({
         ...prevState,
         facilities
@@ -147,15 +155,8 @@ export default function App() {
   async function handleFacilitySubmit(e) {
     e.preventDefault();
     if(facilityState.editMode) {
-      const { _id, name, climbs } = facilityState.newFacility;
       try {
-        const facilities = await fetch(`http://localhost:3001/api/facilities/${_id}`, {
-          method: 'PUT',
-          headers: {
-            'Content-type': 'Application/json'
-          },
-          body: JSON.stringify({ name, climbs })
-        }).then(res => res.json());
+        const facilities = await updateFacility(facilityState.newFacility);
           setFacilityState({
           facilities,
           newFacility: {
@@ -169,13 +170,7 @@ export default function App() {
       }
     } else {
       try {
-        const facility = await fetch('http://localhost:3001/api/facilities', {
-          method: 'POST',
-          headers: {
-            'Content-type': 'Application/json'
-          },
-          body: JSON.stringify(facilityState.newFacility)
-        }).then(res => res.json());
+        const facility = await createFacility(facilityState.newFacility);
           setFacilityState({
           facilities: [...facilityState.facilities, facility],
           newFacility: {
@@ -201,9 +196,7 @@ export default function App() {
   
   async function handleFacilityDelete(id) {
     try {
-      const facilities = await fetch(`http://localhost:3001/api/facilities/${id}`, {
-        method: 'DELETE'
-      }).then(res => res.json());
+      const facilities = await deleteFacility(id);
       setFacilityState(prevState => ({
         ...prevState,
         facilities,
@@ -219,7 +212,7 @@ export default function App() {
 
       <main>
 
-        <section>
+        {/* <section>
           <h2>Add Facility</h2>
           <form onSubmit={handleFacilitySubmit}>
             <label>
@@ -232,7 +225,7 @@ export default function App() {
             />
             <button>{facilityState.editMode ? 'Edit' : 'Submit' }</button>
           </form>
-        </section>
+        </section> */}
         
         <section>
           <h2>Facilities</h2>
@@ -282,6 +275,21 @@ export default function App() {
                 climbs={climbState.climbs}
                 handleEdit={handleEdit}
                 handleDelete={handleDelete}
+              />
+            )}
+          />
+
+          <Route 
+            path='/add-facility'
+            render={() => (
+              <FacilityForm
+                // AddFacility
+                name={facilityState.newFacility.name}
+                climbs={facilityState.newFacility.climbs}
+                editMode={facilityState.editMode}
+                newFacility={facilityState.newFacility}
+                handleFacilityChange={handleFacilityChange}
+                handleFacilitySubmit={handleFacilitySubmit}
               />
             )}
           />

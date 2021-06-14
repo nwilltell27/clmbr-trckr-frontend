@@ -17,6 +17,11 @@ const HomePage = (props) => {
                         to='/climb-log'>
                             View Climb Log
                     </Link>
+                    <Link
+                        className="link"
+                        to='/add-facility'>
+                            Add Facility
+                    </Link>
                 </div>
         </>
     );

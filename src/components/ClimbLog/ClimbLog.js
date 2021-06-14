@@ -27,7 +27,7 @@ function ClimbLog(props) {
                             <Link
                                 className="to-update"
                                 to="add-climbs">  
-                                    Update
+                                    Edit
                             </Link>
                         </button>
                         <button

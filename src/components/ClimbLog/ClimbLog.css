@@ -2,6 +2,7 @@ article {
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-wrap: wrap;
     background-color: #b1b1b1;
     border: 5px solid #000;
     margin: 5px;
@@ -37,7 +38,7 @@ article {
     width: 150px;
   }
   
-  .update-btn {
+  .update-climb {
     background-color: #2dc62d;
     color: #000;
   }
@@ -47,7 +48,7 @@ article {
     text-decoration: none;
   }
 
-  .delete-btn {
+  .delete-climb {
     background-color: #b33838;
     color: #fff;
   }

@@ -3,7 +3,7 @@ import './AddClimb.css';
 function AddClimb(props) {
     return (
         <>
-            <section className="add-climb">
+            <section className='add-climb'>
                 <h2>{props.editMode
                             ? 'Update Climb'
                             : 'Add Climb'}</h2>
@@ -12,14 +12,14 @@ function AddClimb(props) {
                         Date:
                     </label>
                     <input
-                        type="date"
-                        name="date"
+                        type='date'
+                        name='date'
                         value={props.date}
                         onChange={props.handleChange}/>
                     <label>
                         Facility:
                     </label>
-                    <input name="facility" value={props.facility} onChange={props.handleChange}/>
+                    <input name='facility' value={props.facility} onChange={props.handleChange}/>
                     <label>
                         Difficulty:
                     </label>
@@ -44,7 +44,7 @@ function AddClimb(props) {
                     <label>
                         Route Color:
                     </label>
-                    <select name="color" value={props.color} onChange={props.handleChange}>
+                    <select name='color' value={props.color} onChange={props.handleChange}>
                         <option value="Red">Red</option>
                         <option value="Orange">Orange</option>
                         <option value="Yellow">Yellow</option>
@@ -63,9 +63,9 @@ function AddClimb(props) {
                         defaultChecked={climbState.newClimb.completed}
                         onChange={handleChange}
                     /> */}
-                    <select name="completed" value={props.completed} onChange={props.handleChange}>
-                        <option value="No">No</option>
-                        <option value="Yes">Yes</option>
+                    <select name='completed' value={props.completed} onChange={props.handleChange}>
+                        <option value='No'>No</option>
+                        <option value='Yes'>Yes</option>
                     </select>
                     <button>{props.editMode
                             ? 'Update'

@@ -3,21 +3,25 @@ import './AddFacility.css';
 function AddFacility(props) {
     return ( 
         <> 
-            <section className="add-facility">
+            <section className='add-facility'>
                 <h2>Add Facility</h2>
                 <form 
-                    className="form-align"
+                    className='form-align'
                     onSubmit={props.handleFacilitySubmit}>
                 <label>
                     Name:
                 </label>
                 <input
-                    name="name"
+                    name='name'
                     value={props.name}
                     onChange={props.handleFacilityChange}/>
                 <button>{props.editMode
-                        ? 'Edit'
-                        : 'Submit'}</button>
+                    ? 'Update'
+                    : 'Submit'}
+                </button>
+                <button value={props.newFacility}>
+                        Cancel
+                </button>
                 </form>
             </section> 
         </>

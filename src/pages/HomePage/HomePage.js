@@ -6,21 +6,16 @@ const HomePage = (props) => {
     return (
         <>
             <h1>Welcome, Climber!</h1>
-                <div className="HomePage">
+                <div className='HomePage'>
                     <Link
-                        className="link"
-                        to="/add-climbs">
-                            Add Climbs Here
+                        className='link'
+                        to='/facility-list'>
+                            My Facilities
                     </Link>
                     <Link
-                        className="link"
+                        className='link'
                         to='/climb-log'>
                             View Climb Log
-                    </Link>
-                    <Link
-                        className="link"
-                        to='/add-facility'>
-                            Add Facility
                     </Link>
                 </div>
         </>

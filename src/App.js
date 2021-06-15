@@ -22,7 +22,6 @@ import Footer from './components/Footer/Footer';
 /* --- CLIETN-SIDE ROUTING --- */
 import { Route, Switch } from 'react-router-dom';
 import HomePage from './pages/HomePage/HomePage';
-import ClimbLogger from './pages/ClimbLogger/ClimbLogger';
 import MasterLog from './pages/MasterLog/MasterLog';
 import FacilityForm from './pages/FacilityForm/FacilityForm';
 import MasterFacilityList from './pages/MasterFacilityList/MasterFacilityList';
@@ -213,33 +212,6 @@ export default function App() {
 
       <main>
 
-        {/* <section>
-          <h2>Add Facility</h2>
-          <form onSubmit={handleFacilitySubmit}>
-            <label>
-              Name: 
-            </label>
-            <input 
-              name="name" 
-              value={facilityState.newFacility.name} 
-              onChange={handleFacilityChange}
-            />
-            <button>{facilityState.editMode ? 'Edit' : 'Submit' }</button>
-          </form>
-        </section> */}
-        
-        {/* <section>
-          <h2>Facilities</h2>
-          {facilityState.facilities.map(f => (
-            <article key={f._id}>
-              <div>{f.name}</div>
-              <div>{f.climbs}</div>
-              <button onClick={() => handleFacilityEdit(f._id)}>Edit</button>
-              <button onClick={() => handleFacilityDelete(f._id)}>Delete</button>
-            </article>
-          ))}
-        </section> */}
-
         <Switch>
           <Route
             exact path='/'
@@ -251,9 +223,9 @@ export default function App() {
           />
 
           <Route 
-            path='/add-climbs'
+            path='/climb-log'
             render={() => (
-              <ClimbLogger
+              <MasterLog 
                 // AddClimb
                 date={climbState.newClimb.date}
                 facility={climbState.newClimb.facility}
@@ -264,14 +236,6 @@ export default function App() {
                 newClimb={climbState.newClimb}
                 handleChange={handleChange}
                 handleSubmit={handleSubmit}
-              />
-            )}
-          />
-
-          <Route 
-            path='/climb-log'
-            render={() => (
-              <MasterLog 
                 // ClimbLog
                 climbs={climbState.climbs}
                 handleEdit={handleEdit}
@@ -281,9 +245,9 @@ export default function App() {
           />
 
           <Route 
-            path='/add-facility'
+            path='/facility-list'
             render={() => (
-              <FacilityForm
+              <MasterFacilityList 
                 // AddFacility
                 name={facilityState.newFacility.name}
                 climbs={facilityState.newFacility.climbs}
@@ -291,14 +255,6 @@ export default function App() {
                 newFacility={facilityState.newFacility}
                 handleFacilityChange={handleFacilityChange}
                 handleFacilitySubmit={handleFacilitySubmit}
-              />
-            )}
-          />
-
-          <Route 
-            path='facility-list'
-            render={() => (
-              <MasterFacilityList 
                 // FacilityList
                 facilities={facilityState.facilities}
                 handleFacilityEdit={handleFacilityEdit}

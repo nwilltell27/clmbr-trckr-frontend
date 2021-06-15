@@ -4,6 +4,7 @@ import FacilityList from '../../components/FacilityList/FacilityList';
 const MasterFacilityList = (props) => {
     return (
         <div>
+            <h1>My Facilities</h1>
             <AddFacility 
                 name={props.name}
                 climbs={props.climbs}
@@ -12,6 +13,7 @@ const MasterFacilityList = (props) => {
                 handleFacilityChange={props.handleFacilityChange}
                 handleFacilitySubmit={props.handleFacilitySubmit}
             />
+            <br />
             <FacilityList 
                 facilities={props.facilities}
                 handleFacilityEdit={props.handleFacilityEdit}

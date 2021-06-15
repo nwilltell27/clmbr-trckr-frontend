@@ -1,12 +1,13 @@
 import './FacilityList.css';
 
+import { Link } from 'react-router-dom';
+
 function FacilityList(props) {
     return (
         <>
-            <h2>Facilities</h2>
-            <section>
+            <section className='FacilityList'>
                 {props.facilities.map(f => (
-                    <article key={f._id}>
+                    <article className='FacilityList-cards' key={f._id}>
                         <div>
                             <span style={{fontWeight: 'bold'}}>{f.name}</span>
                             <br />
@@ -29,6 +30,14 @@ function FacilityList(props) {
                                     }
                                 }}>
                                 Delete
+                            </button>
+                            <button
+                                className='facility-climb-log btn'>
+                                <Link
+                                    className='my-climbs-link'
+                                    to={`/${f.name}-climb-log`}>
+                                    Climb Log 
+                                </Link>
                             </button>
                         </div>
                     </article>

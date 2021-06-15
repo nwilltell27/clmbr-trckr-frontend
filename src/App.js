@@ -23,11 +23,13 @@ import Footer from './components/Footer/Footer';
 import { Route, Switch } from 'react-router-dom';
 import HomePage from './pages/HomePage/HomePage';
 import MasterLog from './pages/MasterLog/MasterLog';
-import FacilityForm from './pages/FacilityForm/FacilityForm';
 import MasterFacilityList from './pages/MasterFacilityList/MasterFacilityList';
+import FacilityClimbLog from './pages/FacilityClimbLog/FacilityClimbLog';
 
 export default function App() {
-  
+  /* --- State Variables --- */
+  // let facility;
+
   /* --- Climb State & Functions --- */
   const [ climbState, setClimbState ] = useState({
     climbs: [],
@@ -206,6 +208,11 @@ export default function App() {
     }
   }
 
+  // function handleFacilityToRender(name) {
+  //   const facilityToRender = facilityState.facilities.find(facility => facility.name === name);
+  //   facility = facilityToRender;
+  // }
+
   return (
     <div className="App">
       <Header />
@@ -262,6 +269,18 @@ export default function App() {
               />
             )}
           />
+
+          {facilityState.facilities.map(f => (
+            <Route 
+              key={f._id}
+              path={`/${f.name}-climb-log`}
+              render={() => (
+                <FacilityClimbLog
+                  name={f.name}
+                />
+              )}
+            />
+          ))}
 
         </Switch>
 
